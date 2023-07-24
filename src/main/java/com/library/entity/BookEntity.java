@@ -1,4 +1,4 @@
-package com.library.entities;
+package com.library.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -10,6 +10,8 @@ import lombok.*;
 @Getter
 @Setter
 public class BookEntity {
+
+    //TODO: modify and add fields (database table)
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
