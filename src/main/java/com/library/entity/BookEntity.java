@@ -3,10 +3,10 @@ package com.library.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Entity
+//@Entity
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "books")
+//@Table(name = "books")
 @Getter
 @Setter
 public class BookEntity {
