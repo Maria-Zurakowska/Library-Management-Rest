@@ -49,9 +49,9 @@ CREATE TABLE IF NOT EXISTS public.authors
 
 CREATE TABLE IF NOT EXISTS public.books_authors
 (
-    id SERIAL PRIMARY KEY,
     book_id INTEGER NOT NULL,
     author_id INTEGER NOT NULL,
+    PRIMARY KEY (book_id, author_id),
     FOREIGN KEY (book_id) REFERENCES books (id),
     FOREIGN KEY (author_id) REFERENCES authors (id)
 );
@@ -76,18 +76,18 @@ CREATE TABLE IF NOT EXISTS public.genres
 
 CREATE TABLE IF NOT EXISTS public.books_genres
 (
-    id SERIAL PRIMARY KEY,
     book_id INTEGER NOT NULL,
     genre_id INTEGER NOT NULL,
+    PRIMARY KEY (book_id, genre_id),
     FOREIGN KEY (book_id) REFERENCES books (id),
     FOREIGN KEY (genre_id) REFERENCES genres (id)
 );
 
 CREATE TABLE IF NOT EXISTS public.ebooks_genres
 (
-    id SERIAL PRIMARY KEY,
     ebook_id INTEGER NOT NULL,
     genre_id INTEGER NOT NULL,
+    PRIMARY KEY (ebook_id, genre_id),
     FOREIGN KEY (ebook_id) REFERENCES ebooks (id),
     FOREIGN KEY (genre_id) REFERENCES genres (id)
 );
@@ -115,7 +115,7 @@ CREATE TABLE IF NOT EXISTS public.copies
 (
     id SERIAL PRIMARY KEY,
     book_id INTEGER NOT NULL,
-    status VARCHAR(20) DEFAULT 'Available',
+    status VARCHAR(20) DEFAULT 'AVAILABLE',
     location VARCHAR(100),
     condition VARCHAR(50),
     added_date DATE,

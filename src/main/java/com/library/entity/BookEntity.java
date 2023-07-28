@@ -3,26 +3,54 @@ package com.library.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
-//@Entity
+import java.time.LocalDate;
+import java.util.Set;
+
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
-//@Table(name = "books")
+@Table(name = "books")
 @Getter
 @Setter
 public class BookEntity {
 
-    //TODO: modify and add fields (database table)
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
-    private int id;
+    private Integer id;
+
     private String title;
-    private String authorName;
-    private String authorLastName;
-    private String publishingHouse;
-    private int publicationYear;
-    private int languageId;
-    private int pagesNumber;
+
+    @ManyToOne
+    @JoinColumn(name = "publisher_id")
+    private PublisherEntity publisherEntity;
+
+    @OneToMany(mappedBy = "bookEntity")
+    private Set<LanguageEntity> languages;
+
+    @OneToMany(mappedBy = "bookEntity")
+    private Set<CopyEntity> copies;
+
+    @OneToMany(mappedBy = "bookEntity")
+    private Set<EBookEntity> ebooks;
+
     private String isbn;
+
+    private int pagesNumber;
+
+    private int publicationYear;
+
+    private String edition;
+
+    private int quantityAvailable;
+
+    private String description;
+
+    private String coverImageUrl;
+
+    private boolean isAvailable;
+
+    private double rating;
+
+    private LocalDate createdAt;
 }
